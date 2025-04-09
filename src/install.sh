@@ -1,5 +1,6 @@
 #!/bin/bash
-#Author: Viki -> Vignesh Natrajan (https://vikiworks.io)
+#Author: Viki -> V Natrajan (https://viki.design)
+
 USERNAME="ubuntu"
 ADMIN_HOSTNAME="host-192-168-0-6"
 CEPH_MON_HOSTNAME="host-192-168-0-20"
@@ -15,12 +16,12 @@ check_command_status(){
     if [ $? -eq 0 ]; then
    	echo
         echo "{ COMMAND STATUS } [ LINE NO: $1 ] [ SUCCESS ] [ CONTINUE ]"
-	echo 
+	echo
     else
 	echo
         echo "{ COMMAND STATUS } [ LINE NO: $1 ] [ FAILURE ]    [ EXITTING ]"
 	echo
-	exit 1 
+	exit 1
     fi
 }
 
@@ -30,7 +31,7 @@ wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
 sudo apt-add-repository 'deb https://download.ceph.com/debian-mimic xenial main'
 sudo apt-get update
 sudo apt-get remove ceph-deploy -y
-sudo apt-get -y install ceph-deploy 
+sudo apt-get -y install ceph-deploy
 check_command_status ${LINENO}
 
 ceph-deploy purge $CEPH_MON_HOSTNAME $CEPH_OSD1_HOSTNAME $CEPH_OSD2_HOSTNAME $CEPH_OSD3_HOSTNAME
